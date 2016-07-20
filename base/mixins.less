@@ -1,0 +1,434 @@
+// dp -> rem 转换（375的视觉稿为基准）
+// 如：.dp2rem(width, 240);
+// @rem 作为375屏宽的基准值
+// @rem: 375 / 10;
+
+.dp2rem(@name, @dp) when (isunit(@dp, rem)){
+    @{name}: @dp;
+}
+
+.dp2rem(@name, @dp) when not (isunit(@dp, rem)){
+    @{name}: unit(@dp) / @rem * 1rem;
+}
+
+// 清除浮动
+.clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// 滚动
+.scrollable(){
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.none-scrollbar() {
+  &::-webkit-scrollbar, &::-webkit-scrollbar-thumb {
+    width: 0;
+    height: 0;
+  }
+}
+
+.user-select(@v: none) {
+  -webkit-user-select: @v;
+  user-select: @v;
+}
+
+.placeholder(@c) {
+  &::-webkit-input-placeholder {color: @c}
+  &:-ms-input-placeholder {color: @c}
+}
+
+.ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.size(@w; @h) {
+  width: @w;
+  height: @h;
+}
+
+.square(@s) {
+  .size(@s, @s);
+}
+
+// hairlines
+.hairlines(@name, @w:1, @c:#ccc) {
+    @{name}: unit(@w, px) solid @c;
+  .hairlines & {
+    border-width: unit(@w, px) / 2;
+  }
+}
+
+// 快捷方式
+.width(@w) {
+  .dp2rem(width, @w);
+}
+
+.min-width(@nw) {
+  .dp2rem(min-width, @nw);
+}
+
+.max-width(@nw) {
+  .dp2rem(max-width, @nw);
+}
+
+.height(@h) {
+  .dp2rem(height, @h);
+}
+
+.min-height(@mh) {
+  .dp2rem(min-height, @mh);
+}
+
+.max-height(@mh) {
+  .dp2rem(max-height, @mh);
+}
+
+.line-height(@lh) {
+  .dp2rem(line-height, @lh);
+}
+
+.font-size(@fs) {
+  .dp2rem(font-size, @fs);
+}
+
+.top(@t) {
+  .dp2rem(top, @t);
+}
+
+.right(@r) {
+  .dp2rem(right, @r);
+}
+
+.bottom(@b) {
+  .dp2rem(bottom, @b);
+}
+
+.left(@l) {
+  .dp2rem(left, @l);
+}
+
+.padding-top(@pt) {
+  .dp2rem(padding-top, @pt);
+}
+
+.padding-right(@pr) {
+  .dp2rem(padding-right, @pr);
+}
+
+.padding-bottom(@pb) {
+  .dp2rem(padding-bottom, @pb);
+}
+
+.padding-left(@pl) {
+  .dp2rem(padding-left, @pl);
+}
+
+.padding(@pt: 0, @pr: @pt, @pb: @pt, @pl: @pr) {
+  .padding-top(@pt);
+  .padding-right(@pr);
+  .padding-bottom(@pb);
+  .padding-left(@pl);
+}
+
+.margin-top(@mt) {
+  .dp2rem(margin-top, @mt);
+}
+
+.margin-right(@mr) {
+  .dp2rem(margin-right, @mr);
+}
+
+.margin-bottom(@mb) {
+  .dp2rem(margin-bottom, @mb);
+}
+
+.margin-left(@ml) {
+  .dp2rem(margin-left, @ml);
+}
+
+.margin(@mt: 0, @mr: @mt, @mb: @mt, @ml: @mr) {
+  .margin-top(@mt);
+  .margin-right(@mr);
+  .margin-bottom(@mb);
+  .margin-left(@ml);
+}
+
+.border-radius(@br) {
+  .dp2rem(border-radius, @br);
+}
+
+.border-top(@w, @c) {
+  .hairlines(border-top, @w, @c)
+}
+
+.border-right(@w, @c) {
+  .hairlines(border-right, @w, @c)
+}
+.border-bottom(@w, @c) {
+  .hairlines(border-bottom, @w, @c)
+}
+
+.border-left(@w, @c) {
+  .hairlines(border-left, @w, @c)
+}
+.border(@w, @c) {
+  .border-top(@w, @c);
+  .border-right(@w, @c);
+  .border-bottom(@w, @c);
+  .border-left(@w, @c);
+}
+.square(@s) {
+  .size(@s, @s);
+}
+
+.transition(@v) {
+  -webkit-transition: @v;
+  transition: @v;
+}
+
+.transform(@v) {
+  -webkit-transform: @v;
+  transform: @v;
+}
+
+.transform-origin(@v) {
+  -webkit-transform-origin: @v;
+  transform-origin: @v;
+}
+
+.animation(@v) {
+  -webkit-animation: @v;
+  animation: @v;
+}
+
+
+// ----------------- migrate from sui-mobile -----------------
+//flex 相关
+.flexbox() {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.flexbox-inline() {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+}
+.flex-wrap(@fw) when (@fw = nowrap) {
+  -webkit-box-lines: single;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+.flex-wrap(@fw) when (@fw = wrap) {
+  -webkit-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.flex-wrap(@fw) when not (@fw = wrap) and not (@fw = nowrap) {
+  -webkit-flex-wrap: @fw;
+  flex-wrap: @fw;
+}
+.flex-grow(@g) {
+  -webkit-box-flex: @g;
+  box-flex: @g;
+  -webkit-flex-grow: @g;
+  flex-grow: @g;
+}
+.flex(@grow, @shrink) {
+  -webkit-box-flex: @grow;
+  box-flex: @grow;
+  -webkit-flex: @grow @shrink auto;
+  flex: @grow @shrink auto;
+}
+.flex-shrink(@fs) {
+  -webkit-flex-shrink: @fs;
+  flex-shrink: @fs;
+}
+.justify-content(@jc) when (@jc = flex-start) {
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+}
+.justify-content(@jc) when (@jc = flex-end) {
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+}
+.justify-content(@jc) when (@jc = space-between) {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+.justify-content(@jc) when not (@jc = flex-start) and not (@jc = flex-end) and not (@jc = space-between) {
+  -webkit-box-pack: @jc;
+  -webkit-justify-content: @jc;
+  justify-content: @jc;
+}
+.align-items(@ai) when (@ai = flex-start) {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+}
+.align-items(@ai) when (@ai = flex-end) {
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+}
+.align-items(@ai) when not (@ai = flex-start) and not (@ai = flex-end) {
+  -webkit-box-align: @ai;
+  -webkit-align-items: @ai;
+  align-items: @ai;
+}
+.align-content(@ai) {
+  -webkit-align-content: @ai;
+  align-content: @ai;
+}
+.align-self(@as) {
+  -webkit-align-self: @as;
+  align-self: @as;
+}
+
+// hairline 相关
+.hairline(@position, @color) when (@position = top) {
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: auto;
+    right: auto;
+    height: 1px;
+    width: 100%;
+    background-color: @color;
+    display: block;
+    z-index: 15;
+    transform-origin: 50% 0%;
+    @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+      transform: scaleY(0.5);
+    }
+    @media only screen and (-webkit-min-device-pixel-ratio: 3) {
+      transform: scaleY(0.33);
+    }
+  }
+}
+.hairline(@position, @color) when (@position = left) {
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: auto;
+    right: auto;
+    width: 1px;
+    height: 100%;
+    background-color: @color;
+    display: block;
+    z-index: 15;
+    transform-origin: 0% 50%;
+    @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+      transform: scaleX(0.5);
+    }
+    @media only screen and (-webkit-min-device-pixel-ratio: 3) {
+      transform: scaleX(0.33);
+    }
+  }
+}
+.hairline(@position, @color) when (@position = bottom) {
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: auto;
+    top: auto;
+    height: 1px;
+    width: 100%;
+    background-color: @color;
+    display: block;
+    z-index: 15;
+    transform-origin: 50% 100%;
+    @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+      transform: scaleY(0.5);
+    }
+    @media only screen and (-webkit-min-device-pixel-ratio: 3) {
+      transform: scaleY(0.33);
+    }
+  }
+}
+.hairline(@position, @color) when (@position = right) {
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: auto;
+    bottom: auto;
+    width: 1px;
+    height: 100%;
+    background-color: @color;
+    display: block;
+    z-index: 15;
+    transform-origin: 100% 50%;
+    @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+      transform: scaleX(0.5);
+    }
+    @media only screen and (-webkit-min-device-pixel-ratio: 3) {
+      transform: scaleX(0.33);
+    }
+  }
+}
+// For right and bottom
+.hairline-remove(@position) when not (@position = left) and not (@position = top) {
+  &:after {
+    display: none;
+  }
+}
+// For left and top
+.hairline-remove(@position) when not (@position = right) and not (@position = bottom) {
+  &:before {
+    display: none;
+  }
+}
+// For right and bottom
+.hairline-color(@position, @color) when not (@position = left) and not (@position = top) {
+  &:after {
+    background-color: @color;
+  }
+}
+// For left and top
+.hairline-color(@position, @color) when not (@position = right) and not (@position = bottom) {
+  &:before {
+    background-color: @color;
+  }
+}
+.hairline(@type, @color, @offset) when (@type = single) {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='1'><rect fill='#{@color}' x='0' y='0' width='100%' height='0.5'/></svg>");
+  background-position: @offset 100%;
+}
+.hairline(@type, @color, @offset) when (@type = double) {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='1'><rect fill='#{@color}' x='0' y='0' width='100%' height='0.5'/></svg>"),
+  url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='1'><rect fill='#{@color}' x='0' y='0' width='100%' height='0.5'/></svg>");
+  background-position: @offset 100%, @offset 0;
+  background-repeat: no-repeat;
+}
+.preserve3d() {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+// Encoded SVG Background
+.encoded-svg-background(@svg) {
+  @url: `encodeURIComponent(@{svg})`;
+  background-image: url("data:image/svg+xml;charset=utf-8,@{url}");
+}

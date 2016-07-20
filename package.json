@@ -1,0 +1,36 @@
+{
+  "name": "m-base",
+  "version": "0.0.1",
+  "description": " 移动应用样式base库",
+  "homepage": "https://github.com/59fe/m-base",
+  "main": "index.less",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/59fe/m-base.git"
+  },
+  "author": {
+    "name": "半边",
+    "email": "itaofe@gmail.com"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/59fe/m-base/blob/master/LICENSE-MIT"
+    }
+  ],
+  "keywords": [
+    "m-base",
+    "style",
+    "less"
+  ],
+  "license": "Apache-2.0",
+  "maintainers": [
+    {
+    }
+  ],
+  "readmeFilename": "README.md",
+  "devDependencies": { }
+}
