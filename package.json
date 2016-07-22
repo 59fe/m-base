@@ -1,6 +1,6 @@
 {
   "name": "m-base",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": " 移动应用样式和脚本的base层库文件",
   "homepage": "https://github.com/59fe/m-base",
   "main": "index.less",
