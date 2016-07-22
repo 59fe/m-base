@@ -54,8 +54,7 @@ html {
   -webkit-touch-callout: none;
   outline: 0;
 }
-/*
-html, body, body>.page {
+html, body {
   position: relative;
   left: 0;
   top: 0;
@@ -65,7 +64,6 @@ html, body, body>.page {
   margin: 0;
   padding: 0;
 }
-*/
 
 body {
   .font-size(@font-size-body);
@@ -73,21 +71,16 @@ body {
   line-height: @line-height;
   background: @N1_3;
   -webkit-overflow-scrolling: touch;
-  /*
-  .page {
+  .m-base-window {
     z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
     -webkit-overflow-scrolling: touch;
-    & > .content {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      -webkit-overflow-scrolling: touch;
-    }
   }
-  */
 }
 
 input, textarea, button, select, a {
