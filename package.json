@@ -15,12 +15,6 @@
     "name": "半边",
     "email": "itaofe@gmail.com"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/59fe/m-base/blob/master/LICENSE-MIT"
-    }
-  ],
   "keywords": [
     "m-base",
     "style",
