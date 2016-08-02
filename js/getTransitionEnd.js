@@ -2,8 +2,8 @@ function getTransitionEvent(){
     var t;
     var el = document.createElement('fakeelement');
     var transitions = {
-        'transition':'transitionend',
-        'WebkitTransition':'webkitTransitionEnd' 
+        'WebkitTransition':'webkitTransitionEnd',
+        'transition':'transitionend'
     }
     for(t in transitions){
         if( el.style[t] !== undefined ){
